@@ -52,3 +52,6 @@ RUN curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > mic
 RUN sudo apt-get install -y apt-transport-https && \
     sudo apt-get update && \
     sudo apt-get install -y code
+
+## clean
+RUN apt-get autoremove -y
