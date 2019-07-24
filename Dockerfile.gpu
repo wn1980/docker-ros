@@ -8,6 +8,7 @@ RUN apt-get update && \
     xterm \
     xfe \
     xfonts-thai \
+    usbutils \
     curl \
     vim \
     tmux \
