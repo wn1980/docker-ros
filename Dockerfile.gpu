@@ -3,9 +3,11 @@ FROM nvidia/cuda:8.0-cudnn6-devel-ubuntu16.04
 
 # Install sudo and other utilities
 RUN apt-get update && \
-    apt-get install -y sudo \
+    apt-get install -y \
+    sudo \
     xterm \
     xfe \
+    xfonts-thai \
     curl \
     vim \
     tmux \
