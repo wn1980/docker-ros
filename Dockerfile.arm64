@@ -17,8 +17,8 @@ RUN apt-get update && \
     git
 
 # Configure user
-ARG user=rosvnc
-ARG passwd=rosvnc
+ARG user=rosuser
+ARG passwd=rosuser
 ARG uid=1000
 ARG gid=1000
 ENV USER=$user
