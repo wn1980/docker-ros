@@ -9,7 +9,7 @@ RUN apt-get update && \
     sudo \
     xterm \
     xfe \
-    xfonts-thai \
+    nano \
     usbutils \
     curl \
     vim \
