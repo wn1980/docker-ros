@@ -1,5 +1,5 @@
 # This Dockerfile is used to build an ROS + VNC image based on Ubuntu 16.04
-FROM ubuntu:16.04
+FROM armhf/ubuntu:16.04
 
 ENV DEBIAN_FRONTEND noninteractive
 
