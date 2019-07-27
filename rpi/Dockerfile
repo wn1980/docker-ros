@@ -1,5 +1,5 @@
 # This Dockerfile is used to build an ROS + VNC image based on Ubuntu 16.04
-FROM arm32v7/ros:kinetic-ros-base-xenial
+FROM ubuntu:16.04
 
 ENV DEBIAN_FRONTEND noninteractive
 
@@ -35,12 +35,12 @@ RUN groupadd $USER && \
     groupmod --gid $GID $USER
 
 # Install ROS (not NEED for this image)
-#RUN sh -c 'echo "deb http://packages.ros.org/ros/ubuntu xenial main" > \
-#                /etc/apt/sources.list.d/ros-latest.list' && \
-#    apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net:80 --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
+RUN sh -c 'echo "deb http://packages.ros.org/ros/ubuntu xenial main" > \
+                /etc/apt/sources.list.d/ros-latest.list' && \
+    apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net:80 --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
 RUN apt-get update && apt-get install -y ros-kinetic-desktop-full=1.3.2-0* && \
     apt-get install -y python-rosinstall
-#RUN rosdep init
+RUN rosdep init
 
 # Setup ROS
 USER $USER
