@@ -33,6 +33,9 @@ $ sudo apt-get update && sudo apt-get install docker-ce
 ```
 $ sudo systemctl enable docker
 $ sudo systemctl start docker
+
+# Check status
+$ systemctl status docker
 ```
 
 ### Add user to the docker group 
