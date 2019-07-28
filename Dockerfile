@@ -1,5 +1,7 @@
 # This Dockerfile is used to build an ROS + VNC image based on Ubuntu 16.04
-FROM armhf/ubuntu:16.04
+FROM ubuntu:16.04
+#FROM nvidia/cuda:8.0-cudnn6-devel-ubuntu16.04 #GPU version
+#FROM armhf/ubuntu:16.04 #Raspbian version
 
 ENV DEBIAN_FRONTEND noninteractive
 
@@ -45,6 +47,7 @@ RUN rosdep init
 # Setup ROS
 USER $USER
 RUN rosdep fix-permissions && rosdep update
+RUN echo "\n\nROS Config.\n\n\n" >> ~/.bashrc
 RUN echo "source /opt/ros/kinetic/setup.bash" >> ~/.bashrc
 RUN /bin/bash -c "source ~/.bashrc"
 

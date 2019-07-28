@@ -1,5 +1,7 @@
 # This Dockerfile is used to build an ROS + VNC image based on Ubuntu 16.04
-FROM nvidia/cuda:8.0-cudnn6-devel-ubuntu16.04
+#FROM ubuntu:16.04
+FROM nvidia/cuda:8.0-cudnn6-devel-ubuntu16.04 #GPU version
+#FROM armhf/ubuntu:16.04 #Raspbian version
 
 ENV DEBIAN_FRONTEND noninteractive
 
@@ -34,7 +36,7 @@ RUN groupadd $USER && \
     usermod  --uid $UID $USER && \
     groupmod --gid $GID $USER
 
-# Install ROS
+# Install ROS (not NEED for this image)
 RUN sh -c 'echo "deb http://packages.ros.org/ros/ubuntu xenial main" > \
                 /etc/apt/sources.list.d/ros-latest.list' && \
     apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net:80 --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
@@ -45,19 +47,20 @@ RUN rosdep init
 # Setup ROS
 USER $USER
 RUN rosdep fix-permissions && rosdep update
+RUN echo "\n\nROS Config.\n\n\n" >> ~/.bashrc
 RUN echo "source /opt/ros/kinetic/setup.bash" >> ~/.bashrc
 RUN /bin/bash -c "source ~/.bashrc"
 
 ### Install VScode
 USER root
 
-RUN curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg && \
-    sudo install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/ && \
-    sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
+#RUN curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg && \
+#    sudo install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/ && \
+#    sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
 
-RUN sudo apt-get install -y apt-transport-https && \
-    sudo apt-get update && \
-    sudo apt-get install -y code
+#RUN sudo apt-get install -y apt-transport-https && \
+#    sudo apt-get update && \
+#    sudo apt-get install -y code
 
 ## clean
 RUN apt-get autoremove -y
