@@ -26,9 +26,12 @@ $ sudo add-apt-repository \
    $(lsb_release -cs) \
    stable"
    
-$ sudo apt-get update
-
-$ sudo apt-get install docker-ce
+$ sudo apt-get update && sudo apt-get install docker-ce
+```
+### Start Docker service
+```
+$ sudo systemctl enable docker
+$ sudo systemctl start docker
 ```
 
 ### Add user to the docker group 
