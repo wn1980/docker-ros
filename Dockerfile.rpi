@@ -15,6 +15,7 @@ RUN apt-get update && \
     xterm \
     xfe \
     nano \
+    htop \
     usbutils \
     curl \
     vim \
@@ -40,7 +41,7 @@ RUN groupadd $USER && \
     groupmod --gid $GID $USER
 
 # Install ROS 
-RUN sh -c 'echo "deb http://packages.ros.org/ros/ubuntu xenial main" > \
+RUN sh -c 'echo "deb http://packages.ros.org/ros/ubuntu `lsb_release -sc` main" > \
                 /etc/apt/sources.list.d/ros-latest.list' && \
     apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net:80 --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
 
@@ -53,7 +54,7 @@ RUN rosdep init
 # Setup ROS
 USER $USER
 RUN rosdep fix-permissions && rosdep update
-RUN echo "\n\nROS Config.\n\n\n" >> ~/.bashrc
+RUN echo "\n\n### ROS config.\n\n" >> ~/.bashrc
 RUN echo "source /opt/ros/kinetic/setup.bash" >> ~/.bashrc
 RUN /bin/bash -c "source ~/.bashrc"
 
