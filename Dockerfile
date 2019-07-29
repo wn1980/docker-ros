@@ -45,8 +45,8 @@ RUN sh -c 'echo "deb http://packages.ros.org/ros/ubuntu `lsb_release -sc` main" 
                 /etc/apt/sources.list.d/ros-latest.list' && \
     apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net:80 --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
 
-RUN apt-get update && apt-get install -y ros-kinetic-ros-base=1.3.2-0* 
-#RUN apt-get update && apt-get install -y ros-kinetic-desktop-full=1.3.2-0* 
+#RUN apt-get update && apt-get install -y ros-kinetic-ros-base=1.3.2-0* 
+RUN apt-get update && apt-get install -y ros-kinetic-desktop-full=1.3.2-0* 
 
 RUN apt-get install -y python-rosinstall python-vcstools
 RUN rosdep init
@@ -54,7 +54,7 @@ RUN rosdep init
 # Setup ROS
 USER $USER
 RUN rosdep fix-permissions && rosdep update
-RUN echo "\n\n### ROS config.\n\n" >> ~/.bashrc
+RUN echo "\n### ROS config.\n" >> ~/.bashrc
 RUN echo "source /opt/ros/kinetic/setup.bash" >> ~/.bashrc
 RUN /bin/bash -c "source ~/.bashrc"
 
