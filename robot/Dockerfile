@@ -9,12 +9,35 @@ FROM waipotn/ros-novnc
 
 USER root
 
-RUN apt-get install -y python-rosinstall python-rosinstall-generator python-wstool build-essential 
-
-## clean
-USER root
-RUN apt-get autoremove -y && \
-	apt-get clean -y 
+# required for turtlebot
+RUN apt-get update && apt-get install -y \
+    ros-melodic-turtlebot-msgs \
+    ros-melodic-turtlebot-create \
+    ros-melodic-joy \
+    ros-melodic-laptop-battery-monitor \
+    ros-melodic-kobuki \
+    ros-melodic-kobuki-ftdi \
+    ros-melodic-ar-track-alvar-msgs \
+    ros-melodic-navigation
+    
+# required for linorobot
+RUN apt-get update && apt-get install -y \
+	ros-melodic-roslint \
+	ros-melodic-rosserial \
+	ros-melodic-rosserial-arduino \
+	ros-melodic-imu-filter-madgwick \
+	ros-melodic-gmapping \
+	ros-melodic-map-server \
+	ros-melodic-robot-localization \
+	ros-melodic-tf2 \
+	ros-melodic-tf2-ros \
+    ros-melodic-xv-11-laser-driver \
+    ros-melodic-rplidar-ros \
+    ros-melodic-urg-node \
+    ros-melodic-lms1xx \
+    ros-melodic-freenect-launch \
+    ros-melodic-depthimage-to-laserscan \
+    ros-melodic-teb-local-planner
 
 # ROS master port
 EXPOSE 11311
@@ -31,46 +54,14 @@ RUN echo "source $ws/devel/setup.bash" >> ~/.bashrc
 
 # build somes src 
 WORKDIR $src
-USER root
-
-# turtlebot
-RUN apt-get update && apt-get install -y \
-    ros-kinetic-turtlebot-msgs \
-    ros-kinetic-turtlebot-create \
-    ros-kinetic-joy \
-    ros-kinetic-laptop-battery-monitor \
-    ros-kinetic-kobuki \
-    ros-kinetic-kobuki-ftdi \
-    ros-kinetic-ar-track-alvar-msgs \
-    ros-kinetic-navigation
     
+#turtlebot
 RUN git clone https://github.com/turtlebot/turtlebot && \
 	git clone https://github.com/turtlebot/turtlebot_apps && \
 	git clone https://github.com/turtlebot/turtlebot_interactions && \
 	git clone https://github.com/turtlebot/turtlebot_simulator 
 
-# linorobot
-RUN apt-get install -y \
-	ros-kinetic-roslint \
-	ros-kinetic-rosserial \
-	ros-kinetic-rosserial-arduino \
-	ros-kinetic-imu-filter-madgwick \
-	ros-kinetic-gmapping \
-	ros-kinetic-map-server \
-	ros-kinetic-navigation \
-	ros-kinetic-robot-localization \
-	ros-kinetic-tf2 \
-	ros-kinetic-tf2-ros 
-	
-RUN	apt-get install -y \
-	ros-kinetic-xv-11-laser-driver \
-    ros-kinetic-rplidar-ros \
-    ros-kinetic-urg-node \
-    ros-kinetic-lms1xx \
-    ros-kinetic-freenect-launch \
-    ros-kinetic-depthimage-to-laserscan \
-    ros-kinetic-teb-local-planner 
-
+#linorobot
 RUN git clone https://github.com/linorobot/linorobot && \
 	git clone https://github.com/linorobot/imu_calib && \
 	git clone https://github.com/linorobot/lino_pid && \
