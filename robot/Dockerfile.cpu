@@ -47,7 +47,8 @@ USER $USER
 
 ENV ws=$HOME/catkin_ws
 ENV src=$ws/src
-RUN mkdir -p $src
+RUN mkdir -p $ws && cd $ws
+RUN curl -sLf https://raw.githubusercontent.com/gaunthan/Turtlebot2-On-Melodic/master/install_basic.sh | bash catkin_make
 
 #RUN cd $ws  && catkin_make
 RUN echo "source $ws/devel/setup.bash" >> ~/.bashrc
@@ -56,10 +57,10 @@ RUN echo "source $ws/devel/setup.bash" >> ~/.bashrc
 WORKDIR $src
     
 #turtlebot
-RUN git clone https://github.com/turtlebot/turtlebot && \
-	git clone https://github.com/turtlebot/turtlebot_apps && \
-	git clone https://github.com/turtlebot/turtlebot_interactions && \
-	git clone https://github.com/turtlebot/turtlebot_simulator 
+#RUN git clone https://github.com/turtlebot/turtlebot && \
+#	git clone https://github.com/turtlebot/turtlebot_apps && \
+#	git clone https://github.com/turtlebot/turtlebot_interactions && \
+#	git clone https://github.com/turtlebot/turtlebot_simulator 
 
 #linorobot
 RUN git clone https://github.com/linorobot/linorobot && \
