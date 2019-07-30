@@ -1,5 +1,5 @@
 # This Dockerfile is used to build an ROS image based on Ubuntu 16.04
-FROM ubuntu:16.04
+FROM ubuntu:18.04
 #GPU version
 #FROM nvidia/cuda:8.0-cudnn6-devel-ubuntu16.04 
 #Raspbian version
@@ -11,7 +11,7 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update && \
     apt-get install -y \
     sudo \
-	lsb-release \
+    lsb-release \
     xterm \
     xfe \
     nano \
@@ -20,7 +20,8 @@ RUN apt-get update && \
     curl \
     vim \
     tmux \
-    git
+    git \
+    tigervnc-standalone-server
 
 # Configure user
 ARG user=rosuser
