@@ -11,11 +11,11 @@ USER root
 
 # required for turtlebot
 RUN apt-get update && apt-get install -y \
-    ros-$ROS_DISTRO-turtlebot-msgs \
-    ros-$ROS_DISTRO-turtlebot-create \
+    #ros-$ROS_DISTRO-turtlebot-msgs \
+    #ros-$ROS_DISTRO-turtlebot-create \
     ros-$ROS_DISTRO-joy \
-    ros-$ROS_DISTRO-laptop-battery-monitor \
-    ros-$ROS_DISTRO-kobuki \
+    #ros-$ROS_DISTRO-laptop-battery-monitor \
+    #ros-$ROS_DISTRO-kobuki \
     ros-$ROS_DISTRO-kobuki-ftdi \
     ros-$ROS_DISTRO-ar-track-alvar-msgs \
     ros-$ROS_DISTRO-navigation
@@ -35,7 +35,7 @@ RUN apt-get update && apt-get install -y \
     ros-$ROS_DISTRO-rplidar-ros \
     ros-$ROS_DISTRO-urg-node \
     ros-$ROS_DISTRO-lms1xx \
-    ros-$ROS_DISTRO-freenect-launch \
+    #ros-$ROS_DISTRO-freenect-launch \
     ros-$ROS_DISTRO-depthimage-to-laserscan \
     ros-$ROS_DISTRO-teb-local-planner
 
@@ -70,6 +70,8 @@ RUN git clone https://github.com/linorobot/linorobot && \
 	git clone https://github.com/linorobot/lino_visualize && \
 	git clone https://github.com/linorobot/lino_setup && \
 	git clone https://github.com/EAIBOT/ydlidar -b 1.3.1
+
+COPY ./setup/udev-rules/ /etc/udev/rules.d/
 	
 WORKDIR $HOME
 
