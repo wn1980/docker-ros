@@ -1,9 +1,9 @@
 # arm64
-FROM waipotn/ros-novnc
+#FROM waipotn/ros-novnc
 # amd64
 #FROM wn1980/ros-novnc:cpu-rc
 # GPU
-#FROM wn1980/ros-novnc:gpu-rc
+FROM wn1980/ros-novnc:gpu-rc
 # raspbian armhf
 #FROM wn1980/ros-novnc:rpi
 
