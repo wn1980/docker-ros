@@ -1,27 +1,30 @@
-# This Dockerfile is used to build an ROS image based on Ubuntu 16.04
+# This Dockerfile is used to build an ROS image based on Ubuntu 18.04
 FROM ubuntu:18.04
 #GPU version
-#FROM nvidia/cuda:8.0-cudnn6-devel-ubuntu16.04 
+#FROM nvidia/cuda:10.1-cudnn7-devel-ubuntu18.04
 #Raspbian version
-#FROM armhf/ubuntu:16.04
+#FROM armhf/ubuntu:18.04
 
 ENV DEBIAN_FRONTEND noninteractive
+
+# setup timezone
+RUN echo 'Etc/UTC' > /etc/timezone && \
+    ln -s /usr/share/zoneinfo/Etc/UTC /etc/localtime && \
+    apt-get update && apt-get install -q -y tzdata && rm -rf /var/lib/apt/lists/*
 
 # Install sudo and other utilities
 RUN apt-get update && \
     apt-get install -y \
     sudo \
+    dirmngr \
+    gnupg2 \
     lsb-release \
-    xterm \
-    xfe \
-    nano \
     htop \
     usbutils \
     curl \
     vim \
     tmux \
-    git \
-    tigervnc-standalone-server
+    git 
 
 # Configure user
 ARG user=rosuser
@@ -42,21 +45,20 @@ RUN groupadd $USER && \
     groupmod --gid $GID $USER
 
 # Install ROS 
-RUN sh -c 'echo "deb http://packages.ros.org/ros/ubuntu `lsb_release -sc` main" > \
-                /etc/apt/sources.list.d/ros-latest.list' && \
-    apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net:80 --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
+RUN sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list' && \
+    sudo apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
 
-#RUN apt-get update && apt-get install -y ros-kinetic-ros-base=1.3.2-0* 
-RUN apt-get update && apt-get install -y ros-kinetic-desktop-full=1.3.2-0* 
+#RUN apt-get update && apt-get install -y ros-melodic-ros-base
+RUN apt-get update && apt-get install -y ros-melodic-desktop-full
 
-RUN apt-get install -y python-rosinstall python-vcstools
+RUN udo apt install python-rosinstall python-rosinstall-generator python-wstool build-essential
 RUN rosdep init
 
 # Setup ROS
 USER $USER
 RUN rosdep fix-permissions && rosdep update
 RUN echo "\n### ROS config.\n" >> ~/.bashrc
-RUN echo "source /opt/ros/kinetic/setup.bash" >> ~/.bashrc
+RUN echo "source /opt/ros/melodic/setup.bash" >> ~/.bashrc
 RUN /bin/bash -c "source ~/.bashrc"
 
 ### Install VScode
