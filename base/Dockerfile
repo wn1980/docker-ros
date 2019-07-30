@@ -51,13 +51,13 @@ RUN sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) 
 #RUN apt-get update && apt-get install -y ros-melodic-ros-base
 RUN apt-get update && apt-get install -y ros-melodic-desktop-full
 
-RUN udo apt install python-rosinstall python-rosinstall-generator python-wstool build-essential
+RUN apt install -y python-rosinstall python-rosinstall-generator python-wstool build-essential
 RUN rosdep init
 
 # Setup ROS
 USER $USER
 RUN rosdep fix-permissions && rosdep update
-RUN echo "\n### ROS config.\n" >> ~/.bashrc
+RUN echo "\n### ROS config.\n\n" >> ~/.bashrc
 RUN echo "source /opt/ros/melodic/setup.bash" >> ~/.bashrc
 RUN /bin/bash -c "source ~/.bashrc"
 
