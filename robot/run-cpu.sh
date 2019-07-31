@@ -15,5 +15,5 @@ docker run -d \
 	--volume="$PWD:$HOME" \
 	-e VNC_RESOLUTION=$p1080 \
 	--name $NAME \
-	wn1980/ros-robot:cpu-rc
+	wn1980/ros-robot:gpu-rc
 #	--restart unless-stopped \

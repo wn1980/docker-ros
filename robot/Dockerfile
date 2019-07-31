@@ -53,7 +53,9 @@ RUN echo "source $ws/devel/setup.bash" >> ~/.bashrc
 
 # see issues for solving:
 # https://github.com/turtlebot/turtlebot/issues/272
-COPY ./setup/install_turtlebot.sh $HOME
+RUN mkdir -p $HOME/.scripts
+COPY ./setup/scripts $HOME/.scripts
+COPY ./setup/udev-rules/ /etc/udev/rules.d/
 
 # build somes src 
 WORKDIR $src
@@ -70,16 +72,14 @@ WORKDIR $src
 #	git clone https://github.com/turtlebot/turtlebot_simulator 
 
 #linorobot
-RUN git clone https://github.com/linorobot/linorobot && \
-	git clone https://github.com/linorobot/imu_calib && \
-	git clone https://github.com/linorobot/lino_pid && \
-	git clone https://github.com/linorobot/lino_udev && \
-	git clone https://github.com/linorobot/lino_msgs && \
-	git clone https://github.com/linorobot/lino_visualize && \
-	git clone https://github.com/linorobot/lino_setup && \
-	git clone https://github.com/EAIBOT/ydlidar -b 1.3.1
-
-COPY ./setup/udev-rules/ /etc/udev/rules.d/
+#RUN git clone https://github.com/linorobot/linorobot && \
+#	git clone https://github.com/linorobot/imu_calib && \
+#	git clone https://github.com/linorobot/lino_pid && \
+#	git clone https://github.com/linorobot/lino_udev && \
+#	git clone https://github.com/linorobot/lino_msgs && \
+#	git clone https://github.com/linorobot/lino_visualize && \
+#	git clone https://github.com/linorobot/lino_setup && \
+#	git clone https://github.com/EAIBOT/ydlidar -b 1.3.1
 	
 WORKDIR $HOME
 
