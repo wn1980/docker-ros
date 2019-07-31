@@ -59,9 +59,9 @@ COPY ./setup/install_turtlebot.sh $HOME
 WORKDIR $src
 
 #turtlebot1
-RUN git clone https://github.com/turtlebot/turtlebot_create && \
-	git clone https://github.com/turtlebot/turtlebot_create_desktop && \
-	git clone https://github.com/turtlebot/turtlebot_web
+#RUN git clone https://github.com/turtlebot/turtlebot_create && \
+#	git clone https://github.com/turtlebot/turtlebot_create_desktop && \
+#	git clone https://github.com/turtlebot/turtlebot_web
     
 #turtlebot2
 #RUN git clone https://github.com/turtlebot/turtlebot && \
