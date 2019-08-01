@@ -19,6 +19,7 @@ git clone https://github.com/turtlebot/turtlebot_apps.git
 git clone https://github.com/turtlebot/turtlebot_simulator
 git clone https://github.com/turtlebot/turtlebot_interactions.git
 
+git clone https://github.com/ros-drivers/freenect_stack
 git clone https://github.com/ros-drivers/linux_peripheral_interfaces
 
 git clone https://github.com/toeklk/orocos-bayesian-filtering.git
@@ -49,6 +50,8 @@ rm -rf yujin_ocs
 
 sudo apt-get install ros-melodic-kobuki-* -y
 sudo apt-get install ros-melodic-ecl-streams -y
+
+sudo apt-get install libfreenect-dev -y
 
 echo '# TurtleBot settings' >> ~/.bashrc
 
