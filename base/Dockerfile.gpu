@@ -75,8 +75,8 @@ RUN apt-get update && apt-get install -y \
 # Setup ROS
 USER $USER
 RUN rosdep fix-permissions && rosdep update
-RUN echo "\n### ROS config.\n\n" >> ~/.bashrc
-RUN echo "source /opt/ros/$ROS_DISTRO/setup.bash" >> ~/.bashrc
+RUN echo "\n### ROS config." >> ~/.bashrc
+RUN echo "source /opt/ros/$ROS_DISTRO/setup.bash\n" >> ~/.bashrc
 RUN /bin/bash -c "source ~/.bashrc"
 
 ### Install VScode

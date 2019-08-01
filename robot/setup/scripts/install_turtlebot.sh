@@ -3,7 +3,6 @@
 # Ref:
 # 	https://github.com/gaunthan/Turtlebot2-On-Melodic
 
-#mkdir -p src
 cd ~/catkin_ws/src
 
 # turtlebot 1
@@ -51,7 +50,7 @@ rm -rf yujin_ocs
 sudo apt-get install ros-melodic-kobuki-* -y
 sudo apt-get install ros-melodic-ecl-streams -y
 
-echo '# TurtleBot settings' >> ~/.bashrc
+echo '#\n TurtleBot settings' >> ~/.bashrc
 
 echo 'export TURTLEBOT_MAP_FILE=~/my_map.yaml' >> ~/.bashrc
 
