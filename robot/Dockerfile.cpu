@@ -47,16 +47,23 @@ USER $USER
 
 ENV ws=$HOME/catkin_ws
 ENV src=$ws/src
-RUN mkdir -p $ws && cd $ws
-RUN curl -sLf https://raw.githubusercontent.com/gaunthan/Turtlebot2-On-Melodic/master/install_basic.sh | bash catkin_make
-
+RUN mkdir -p $src
 #RUN cd $ws  && catkin_make
 RUN echo "source $ws/devel/setup.bash" >> ~/.bashrc
 
+# see issues for solving:
+# https://github.com/turtlebot/turtlebot/issues/272
+COPY ./setup/install_turtlebot.sh $HOME
+
 # build somes src 
 WORKDIR $src
+
+#turtlebot1
+RUN git clone https://github.com/turtlebot/turtlebot_create && \
+	git clone https://github.com/turtlebot/turtlebot_create_desktop && \
+	git clone https://github.com/turtlebot/turtlebot_web
     
-#turtlebot
+#turtlebot2
 #RUN git clone https://github.com/turtlebot/turtlebot && \
 #	git clone https://github.com/turtlebot/turtlebot_apps && \
 #	git clone https://github.com/turtlebot/turtlebot_interactions && \
