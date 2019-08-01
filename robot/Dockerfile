@@ -18,7 +18,8 @@ RUN apt-get update && apt-get install -y \
     #ros-$ROS_DISTRO-kobuki \
     ros-$ROS_DISTRO-kobuki-ftdi \
     ros-$ROS_DISTRO-ar-track-alvar-msgs \
-    ros-$ROS_DISTRO-navigation
+    ros-$ROS_DISTRO-navigation \
+	libsensors4-dev
     
 # required for linorobot
 RUN apt-get update && apt-get install -y \

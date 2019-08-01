@@ -4,7 +4,7 @@ p1080=1920x1080
 p720=1280x720
 p169=1600x900
 
-NAME=ros-novnc
+NAME=ros-robot-daemon
 
 docker rm -f $NAME
 
@@ -15,5 +15,6 @@ docker run -d \
 	--privileged \
 	-e VNC_RESOLUTION=$p720 \
 	--name $NAME \
-	aarch64.registry.marina.io/waipotn/ros-novnc
+	--restart unless-stopped \
+	aarch64.registry.marina.io/waipotn/ros-robot
 	#wn1980/ros-vnc:rpi

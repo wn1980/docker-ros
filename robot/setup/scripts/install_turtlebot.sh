@@ -1,13 +1,25 @@
 #!/usr/bin/env sh
 
-#mkdir -p src
-cd $src
+# Ref:
+# 	https://github.com/gaunthan/Turtlebot2-On-Melodic
 
-git clone https://github.com/turtlebot/turtlebot_simulator
+#mkdir -p src
+cd ~/.catkin_ws/src
+
+# turtlebot 1
+git clone https://github.com/turtlebot/turtlebot_create && \
+#git clone https://github.com/turtlebot/turtlebot_create_desktop && \
+git clone https://github.com/turtlebot/turtlebot_web
+
+# turtlebot 2
+
 git clone https://github.com/turtlebot/turtlebot.git
-git clone https://github.com/turtlebot/turtlebot_apps.git
 git clone https://github.com/turtlebot/turtlebot_msgs.git
+git clone https://github.com/turtlebot/turtlebot_apps.git
+git clone https://github.com/turtlebot/turtlebot_simulator
 git clone https://github.com/turtlebot/turtlebot_interactions.git
+
+git clone https://github.com/ros-drivers/linux_peripheral_interfaces
 
 git clone https://github.com/toeklk/orocos-bayesian-filtering.git
 cd orocos-bayesian-filtering/orocos_bfl/
@@ -38,4 +50,14 @@ rm -rf yujin_ocs
 sudo apt-get install ros-melodic-kobuki-* -y
 sudo apt-get install ros-melodic-ecl-streams -y
 
-cd $ws && catkin_make
+echo '# TurtleBot settings' >> ~/.bashrc
+
+echo 'export TURTLEBOT_MAP_FILE=~/my_map.yaml' >> ~/.bashrc
+
+echo '#export TURTLEBOT_BASE=create' >> ~/.bashrc
+echo '#export TURTLEBOT_STACKS=circles' >> ~/.bashrc
+echo '#export TURTLEBOT_3D_SENSOR=kinect' >> ~/.bashrc
+echo '#export TURTLEBOT_SERIAL_PORT=/dev/create1' >> ~/.bashrc
+
+echo '#export ROS_MASTER_URI=http://localhost:11311' >> ~/.bashrc
+echo '#export ROS_HOSTNAME=turtlebot1.local' >> ~/.bashrc
