@@ -16,10 +16,17 @@ RUN apt-get update && apt-get install -y \
     ros-$ROS_DISTRO-joy \
     #ros-$ROS_DISTRO-laptop-battery-monitor \
     #ros-$ROS_DISTRO-kobuki \
+    ros-$ROS_DISTRO-kobuki-msgs \
     ros-$ROS_DISTRO-kobuki-ftdi \
     ros-$ROS_DISTRO-ar-track-alvar-msgs \
     ros-$ROS_DISTRO-navigation \
+    ros-$ROS_DISTRO-rgbd-launch \
+    ros-$ROS_DISTRO-robot-pose-ekf \
+    libfreenect-dev \
 	libsensors4-dev
+	
+# fix missing path for libfreenect
+RUN ln -s /usr/include /usr/include/libfreenect
     
 # required for linorobot
 RUN apt-get update && apt-get install -y \
