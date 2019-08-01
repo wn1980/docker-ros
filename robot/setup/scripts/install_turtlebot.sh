@@ -1,10 +1,10 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 # Ref:
 # 	https://github.com/gaunthan/Turtlebot2-On-Melodic
 
 #mkdir -p src
-cd ~/.catkin_ws/src
+cd ~/catkin_ws/src
 
 # turtlebot 1
 git clone https://github.com/turtlebot/turtlebot_create && \

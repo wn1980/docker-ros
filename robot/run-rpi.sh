@@ -16,5 +16,6 @@ docker run -d \
 	-e VNC_RESOLUTION=$p720 \
 	--name $NAME \
 	--restart unless-stopped \
+	-v /dev:/dev \
 	aarch64.registry.marina.io/waipotn/ros-robot
 	#wn1980/ros-vnc:rpi
