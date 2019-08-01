@@ -47,6 +47,14 @@ RUN apt-get update && apt-get install -y \
     ros-$ROS_DISTRO-depthimage-to-laserscan \
     ros-$ROS_DISTRO-teb-local-planner
 
+# see issues for solving:
+# https://github.com/turtlebot/turtlebot/issues/272
+RUN mkdir -p $HOME/.scripts
+COPY ./setup/scripts $HOME/.scripts
+COPY ./setup/udev-rules/ /etc/udev/rules.d/
+
+RUN find $HOME/.scripts -name '*.sh' -exec chmod a+x {} +
+
 # ROS master port
 EXPOSE 11311
 
@@ -59,14 +67,6 @@ RUN mkdir -p $src
 #RUN cd $ws  && catkin_make
 RUN echo "source $ws/devel/setup.bash" >> ~/.bashrc
 
-# see issues for solving:
-# https://github.com/turtlebot/turtlebot/issues/272
-RUN mkdir -p $HOME/.scripts
-COPY ./setup/scripts $HOME/.scripts
-COPY ./setup/udev-rules/ /etc/udev/rules.d/
-
-RUN find $HOME/.scripts -name '*.sh' -exec chmod a+x {} +
-
 # build somes src 
 WORKDIR $HOME/.scripts
 
@@ -75,7 +75,7 @@ RUN ./install_linorobot.sh
 	
 WORKDIR $HOME
 
-CMD cd $ws && catkin_make
+#RUN cd $ws && catkin_make
 
 ENTRYPOINT ["/opt/docker_startup/startup.sh"]
 CMD ["--wait", "--debug"]
