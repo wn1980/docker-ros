@@ -1,5 +1,5 @@
 # arm64
-FROM aarch64.registry.marina.io/waipotn/ros-novnc
+FROM waipotn/ros-novnc
 # amd64
 #FROM wn1980/ros-novnc:cpu-rc
 # GPU

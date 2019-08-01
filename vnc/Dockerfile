@@ -1,5 +1,5 @@
 # arm64
-FROM aarch64.registry.marina.io/waipotn/ros-base
+FROM waipotn/ros-base
 # amd64
 #FROM wn1980/ros-base:cpu
 # GPU
