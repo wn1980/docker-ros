@@ -65,11 +65,13 @@ RUN mkdir -p $HOME/.scripts
 COPY ./setup/scripts $HOME/.scripts
 COPY ./setup/udev-rules/ /etc/udev/rules.d/
 
+RUN find $HOME/.scripts -name '*.sh' -exec chmod a+x {} +
+
 # build somes src 
 WORKDIR $HOME/.scripts
 
-RUN install_turtlebot.sh
-RUN install_linorobot.sh
+RUN ./install_turtlebot.sh
+RUN ./install_linorobot.sh
 	
 WORKDIR $HOME
 
