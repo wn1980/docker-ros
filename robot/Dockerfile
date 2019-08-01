@@ -66,28 +66,10 @@ COPY ./setup/scripts $HOME/.scripts
 COPY ./setup/udev-rules/ /etc/udev/rules.d/
 
 # build somes src 
-WORKDIR $src
+WORKDIR $HOME/.scripts
 
-#turtlebot1
-#RUN git clone https://github.com/turtlebot/turtlebot_create && \
-#	git clone https://github.com/turtlebot/turtlebot_create_desktop && \
-#	git clone https://github.com/turtlebot/turtlebot_web
-    
-#turtlebot2
-#RUN git clone https://github.com/turtlebot/turtlebot && \
-#	git clone https://github.com/turtlebot/turtlebot_apps && \
-#	git clone https://github.com/turtlebot/turtlebot_interactions && \
-#	git clone https://github.com/turtlebot/turtlebot_simulator 
-
-#linorobot
-#RUN git clone https://github.com/linorobot/linorobot && \
-#	git clone https://github.com/linorobot/imu_calib && \
-#	git clone https://github.com/linorobot/lino_pid && \
-#	git clone https://github.com/linorobot/lino_udev && \
-#	git clone https://github.com/linorobot/lino_msgs && \
-#	git clone https://github.com/linorobot/lino_visualize && \
-#	git clone https://github.com/linorobot/lino_setup && \
-#	git clone https://github.com/EAIBOT/ydlidar -b 1.3.1
+RUN install_turtlebot.sh
+RUN install_linorobot.sh
 	
 WORKDIR $HOME
 
