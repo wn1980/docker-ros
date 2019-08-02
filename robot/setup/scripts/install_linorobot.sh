@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-cd ~/catkin_ws/src
+cd $src
 
 git clone https://github.com/linorobot/linorobot && \
 git clone https://github.com/linorobot/imu_calib && \

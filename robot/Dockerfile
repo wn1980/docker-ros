@@ -9,29 +9,31 @@ FROM waipotn/ros-novnc
 
 USER root
 
+# see issues for solving:
+# https://github.com/turtlebot/turtlebot/issues/272
+
 # required for turtlebot
 RUN apt-get update && apt-get install -y \
     #ros-$ROS_DISTRO-turtlebot-msgs \
     #ros-$ROS_DISTRO-turtlebot-create \
     ros-$ROS_DISTRO-joy \
     #ros-$ROS_DISTRO-laptop-battery-monitor \
-    #ros-$ROS_DISTRO-kobuki \
-    ros-$ROS_DISTRO-kobuki-msgs \
-    ros-$ROS_DISTRO-kobuki-ftdi \
+    ros-$ROS_DISTRO-kobuki-* \
+    ros-$ROS_DISTRO-yocs-cmd-vel-mux \
+    ros-$ROS_DISTRO-yocs-controllers \
+    ros-$ROS_DISTRO-yocs-velocity-smoother \
     ros-$ROS_DISTRO-ar-track-alvar-msgs \
     ros-$ROS_DISTRO-navigation \
     ros-$ROS_DISTRO-rgbd-launch \
+	ros-$ROS_DISTRO-openni2-launch \
     ros-$ROS_DISTRO-robot-pose-ekf \
+    ros-$ROS_DISTRO-ecl-streams \
+    ros-$ROS_DISTRO-bfl \
     libfreenect-dev \
 	libsensors4-dev
 	
 # fix missing path for libfreenect
 RUN ln -s /usr/include /usr/include/libfreenect
- 
-RUN apt-get install -y \
-ros-$ROS_DISTRO-bfl \
-ros-$ROS_DISTRO-kobuki-* \
-      ros-$ROS_DISTRO-ecl-streams
 
 # required for linorobot
 RUN apt-get update && apt-get install -y \
@@ -52,31 +54,28 @@ RUN apt-get update && apt-get install -y \
     ros-$ROS_DISTRO-depthimage-to-laserscan \
     ros-$ROS_DISTRO-teb-local-planner
 
-# see issues for solving:
-# https://github.com/turtlebot/turtlebot/issues/272
 RUN mkdir -p $HOME/.scripts
 COPY ./setup/scripts $HOME/.scripts
 COPY ./setup/udev-rules/ /etc/udev/rules.d/
 
 RUN find $HOME/.scripts -name '*.sh' -exec chmod a+x {} +
 
-# ROS master port
-EXPOSE 11311
-
 # create workspace
 USER $USER
-
 ENV ws=$HOME/catkin_ws
 ENV src=$ws/src
 RUN mkdir -p $src
-#RUN cd $ws  && catkin_make
-RUN echo "source $ws/devel/setup.bash" >> ~/.bashrc
+#RUN /bin/bash --login -c 'cd $ws  && catkin_make'
+RUN echo "\nsource $ws/devel/setup.bash\n" >> $HOME/.bashrc
 
 # build somes src 
 WORKDIR $HOME/.scripts
 
 RUN ./install_turtlebot.sh
 RUN ./install_linorobot.sh
+
+# ROS master port
+EXPOSE 11311
 	
 WORKDIR $HOME
 
