@@ -14,6 +14,6 @@ docker run -d --name $NAME \
 	-p 11311:11311 \
 	--privileged \
 	-e VNC_RESOLUTION=$p720 \
-	--restart unless-stopped \
+	--restart always \
 	-v /dev:/dev \
 	aarch64.registry.marina.io/waipotn/ros-robot

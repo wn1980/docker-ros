@@ -15,6 +15,6 @@ nvidia-docker run -d --name $NAME \
 	--ipc host \
 	--privileged \
 	-e VNC_RESOLUTION=$p1080 \
-	--restart unless-stopped \
+	--restart always \
 	-v /dev:/dev \
 	wn1980/ros-robot:gpu-rc
