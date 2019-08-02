@@ -27,7 +27,12 @@ RUN apt-get update && apt-get install -y \
 	
 # fix missing path for libfreenect
 RUN ln -s /usr/include /usr/include/libfreenect
-    
+ 
+RUN apt-get install -y \
+ros-$ROS_DISTRO-bfl \
+ros-$ROS_DISTRO-kobuki-* \
+      ros-$ROS_DISTRO-ecl-streams
+
 # required for linorobot
 RUN apt-get update && apt-get install -y \
 	ros-$ROS_DISTRO-roslint \
