@@ -47,9 +47,9 @@ git clone https://github.com/yujinrobot/yujin_ocs.git
 mv yujin_ocs/yocs_cmd_vel_mux yujin_ocs/yocs_controllers .
 rm -rf yujin_ocs
 
-sudo apt-get install ros-melodic-bfl -y
-sudo apt-get install ros-melodic-kobuki-* -y
-sudo apt-get install ros-melodic-ecl-streams -y
+#sudo apt-get install ros-melodic-bfl -y
+#sudo apt-get install ros-melodic-kobuki-* -y
+#sudo apt-get install ros-melodic-ecl-streams -y
 
 echo '\n# TurtleBot settings' >> ~/.bashrc
 
