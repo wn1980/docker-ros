@@ -60,6 +60,9 @@ COPY ./setup/udev-rules/ /etc/udev/rules.d/
 
 RUN find $HOME/.scripts -name '*.sh' -exec chmod a+x {} +
 
+RUN usermod -a -G video $USER
+RUN usermod -a -G dialout $USER
+
 # create workspace
 USER $USER
 ENV ws=$HOME/catkin_ws
