@@ -25,7 +25,7 @@ RUN apt-get update && apt-get install -y \
     ros-$ROS_DISTRO-ar-track-alvar-msgs \
     ros-$ROS_DISTRO-navigation \
     ros-$ROS_DISTRO-rgbd-launch \
-	ros-$ROS_DISTRO-openni2-launch \
+	ros-$ROS_DISTRO-openni-launch \
     ros-$ROS_DISTRO-robot-pose-ekf \
     ros-$ROS_DISTRO-ecl-streams \
     ros-$ROS_DISTRO-bfl \
