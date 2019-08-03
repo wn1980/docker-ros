@@ -33,7 +33,7 @@ git clone https://github.com/ros-drivers/linux_peripheral_interfaces
 #git clone https://github.com/udacity/robot_pose_ekf
 #git clone https://github.com/ros-perception/depthimage_to_laserscan.git
 
-#git clone https://github.com/yujinrobot/kobuki_msgs.git
+git clone https://github.com/yujinrobot/kobuki_msgs.git
 
 git clone https://github.com/yujinrobot/kobuki_desktop.git
 cd kobuki_desktop/
