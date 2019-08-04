@@ -15,6 +15,7 @@ docker run -d --name $NAME \
 	--network host \
 	--privileged \
 	-e VNC_RESOLUTION=$p720 \
-	--restart always \
+	--restart on-failure:5 \
 	-v /dev:/dev \
+	-v /etc/localtime:/etc/localtime:ro \
 	aarch64.registry.marina.io/waipotn/ros-robot
