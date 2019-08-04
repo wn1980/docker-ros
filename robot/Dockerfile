@@ -53,6 +53,7 @@ COPY ./setup/scripts $HOME/.scripts
 COPY ./setup/udev-rules/ /etc/udev/rules.d/
 
 RUN find $HOME/.scripts -name '*.sh' -exec chmod a+x {} +
+RUN find $HOME/.scripts -name '*.pl' -exec chmod a+x {} +
 
 # create workspace
 USER $USER
