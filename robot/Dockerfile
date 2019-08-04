@@ -1,11 +1,4 @@
-# arm64
 FROM waipotn/ros-novnc
-# amd64
-#FROM wn1980/ros-novnc:cpu-rc
-# GPU
-#FROM wn1980/ros-novnc:gpu-rc
-# raspbian armhf
-#FROM wn1980/ros-novnc:rpi
 
 USER root
 
@@ -67,15 +60,27 @@ RUN usermod -a -G dialout $USER
 USER $USER
 ENV ws=$HOME/catkin_ws
 ENV src=$ws/src
-RUN mkdir -p $src
+#RUN mkdir -p $src
 #RUN /bin/bash --login -c 'cd $ws  && catkin_make'
 RUN echo "\nsource $ws/devel/setup.bash\n" >> $HOME/.bashrc
 
-# build somes src 
+# download compiled catkin_ws
 WORKDIR $HOME/.scripts
 
-RUN ./install_turtlebot.sh
-RUN ./install_linorobot.sh
+RUN ./dl_pkg.sh
+
+# env vars.
+RUN sh -c 'echo "\n# TurtleBot settings" >> $HOME/.bashrc' && \
+
+	sh -c 'echo "#export TURTLEBOT_MAP_FILE=~/my_map.yaml\n" >> $HOME/.bashrc' && \
+
+	sh -c 'echo "#export TURTLEBOT_BASE=create" >> $HOME/.bashrc' && \
+	sh -c 'echo "#export TURTLEBOT_STACKS=circles" >> $HOME/.bashrc' && \
+	sh -c 'echo "#export TURTLEBOT_3D_SENSOR=kinect" >> $HOME/.bashrc' && \
+	sh -c 'echo "#export TURTLEBOT_SERIAL_PORT=/dev/create1\n" >> $HOME/.bashrc' && \
+
+	sh -c 'echo "#export ROS_MASTER_URI=http://localhost:11311" >> $HOME/.bashrc' && \
+	sh -c 'echo "#export ROS_HOSTNAME=turtlebot1.local\n" >> $HOME/.bashrc'
 
 # ROS master port
 EXPOSE 11311

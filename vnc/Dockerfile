@@ -1,11 +1,4 @@
-# arm64
 FROM waipotn/ros-base
-# amd64
-#FROM wn1980/ros-base:cpu
-# GPU
-#FROM wn1980/ros-base:gpu
-# raspbian armhf
-#FROM wn1980/ros-base:rpi
 
 ARG p1080=1920x1080
 ARG p720=1280x720
