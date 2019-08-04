@@ -98,7 +98,7 @@ vncserver -kill $DISPLAY &> $STARTUPDIR/log/vnc_startup.log \
 
 echo -e "start vncserver with param: VNC_COL_DEPTH=$VNC_COL_DEPTH, VNC_RESOLUTION=$VNC_RESOLUTION\n..."
 if [[ $DEBUG == true ]]; then echo "vncserver $DISPLAY -depth $VNC_COL_DEPTH -geometry $VNC_RESOLUTION"; fi
-vncserver $DISPLAY -depth $VNC_COL_DEPTH -geometry $VNC_RESOLUTION −noxstartup &> $STARTUPDIR/log/no_vnc_startup.log
+vncserver $DISPLAY -depth $VNC_COL_DEPTH -geometry $VNC_RESOLUTION &> $STARTUPDIR/log/no_vnc_startup.log
 
 sleep 2
 
