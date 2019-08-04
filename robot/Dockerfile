@@ -56,6 +56,7 @@ RUN find $HOME/.scripts -name '*.sh' -exec chmod a+x {} +
 
 # create workspace
 USER $USER
+WORKDIR $HOME
 ENV ws=$HOME/catkin_ws
 ENV src=$ws/src
 #RUN mkdir -p $src
@@ -63,9 +64,7 @@ ENV src=$ws/src
 RUN echo "\nsource $ws/devel/setup.bash\n" >> $HOME/.bashrc
 
 # download compiled catkin_ws
-WORKDIR $HOME/.scripts
-
-RUN ./dl_pkg.sh
+RUN ./.scripts/dl_pkg.sh
 
 # env vars.
 RUN sh -c 'echo "\n# TurtleBot settings" >> $HOME/.bashrc' && \
@@ -83,7 +82,7 @@ RUN sh -c 'echo "\n# TurtleBot settings" >> $HOME/.bashrc' && \
 # ROS master port
 EXPOSE 11311
 	
-WORKDIR $HOME
+#WORKDIR $HOME
 
 #RUN cd $ws && catkin_make
 
