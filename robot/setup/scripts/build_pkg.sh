@@ -68,5 +68,5 @@ git clone https://github.com/linorobot/lino_setup && \
 git clone https://github.com/EAIBOT/ydlidar -b 1.3.1
 
 cd $ws && catkin_make
-cd $HOME && tar -czfv $HOME/catkin_ws_$(uname -m).tar.gz
+cd $HOME && tar -czf catkin_ws_$(uname -m).tar.gz catkin_ws
 
