@@ -1,9 +1,5 @@
 # This Dockerfile is used to build an ROS image based on Ubuntu 18.04
-FROM ubuntu:18.04
-#GPU version
-#FROM nvidia/cuda:10.1-cudnn7-devel-ubuntu18.04
-#Raspbian version
-#FROM armhf/ubuntu:18.04
+FROM waipotn/ubuntu
 
 ENV DEBIAN_FRONTEND noninteractive
 
@@ -43,6 +39,9 @@ RUN groupadd $USER && \
     # Replace 1000 with your user/group id
     usermod  --uid $UID $USER && \
     groupmod --gid $GID $USER
+
+RUN usermod -a -G video $USER
+RUN usermod -a -G dialout $USER
 
 # setup keys
 RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
