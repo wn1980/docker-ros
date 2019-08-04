@@ -104,10 +104,10 @@ RUN apt-get autoremove -y && \
 	rm -rf $INST_SCRIPTS
 
 # Expose Jupyter 
-EXPOSE 8888
+#EXPOSE 8888
 
 ### Switch to root user to install additional software
-USER $USER
+#USER $USER
 
 #ENTRYPOINT ["/opt/docker_startup/startup.sh"]
 #CMD ["--wait", "--debug"]
