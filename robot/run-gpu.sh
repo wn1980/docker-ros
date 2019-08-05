@@ -9,12 +9,11 @@ NAME=ros-robot-daemon
 docker rm -f $NAME
 
 nvidia-docker run -d --name $NAME \
-	-p 5901:5901 \
-	-p 6901:6901 \
-	-p 11311:11311 \
-	--ipc host \
+	--network host \
 	--privileged \
 	-e VNC_RESOLUTION=$p1080 \
-	--restart always \
+	-e VNC_COL_DEPTH=24 \
+	--restart unless-stopped \
 	-v /dev:/dev \
-	wn1980/ros-robot:gpu-rc
+	-v /etc/localtime:/etc/localtime:ro \
+	wn1980/ros-robot

@@ -19,6 +19,9 @@ RUN apt-get update && apt-get install -q -y \
     curl \
     vim \
     tmux \
+    inetutils-ping \
+    netatalk \
+    avahi-daemon \
     git \
     && rm -rf /var/lib/apt/lists/*
 
@@ -43,6 +46,8 @@ RUN groupadd $USER && \
 RUN usermod -a -G video $USER
 RUN usermod -a -G dialout $USER
 
+RUN update-rc.d avahi-daemon defaults
+
 # setup keys
 RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
 
@@ -66,10 +71,10 @@ RUN rosdep init
 # install ros packages
 ENV ROS_DISTRO melodic
 RUN apt-get update && apt-get install -y \
-#    ros-melodic-ros-core=1.4.1-0* \
-#   ros-melodic-ros-base=1.4.1-0* \
+#  ros-melodic-ros-core=1.4.1-0* \
+#  ros-melodic-ros-base=1.4.1-0* \
    ros-melodic-desktop-full=1.4.1-0* \
-    && rm -rf /var/lib/apt/lists/*
+   && rm -rf /var/lib/apt/lists/*
 
 # Setup ROS
 USER $USER
@@ -90,4 +95,5 @@ USER root
 #    sudo apt-get install -y code
 
 ## clean
-RUN apt-get autoremove -y
+RUN apt-get autoremove -y && \
+	apt-get clean -y

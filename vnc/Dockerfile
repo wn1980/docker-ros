@@ -82,10 +82,10 @@ COPY ./setup/ui/wallpapers $STARTUPDIR/wallpapers
 #icewm ui
 COPY ./setup/ui/icewm $HOME/.icewm
 #jwm ui
-COPY ./setup/ui/jwm/ $HOME/.jwm
+COPY ./setup/ui/jwm/jwmrc $HOME/.jwm
 RUN ln -s $HOME/.jwm/main.jwmrc $HOME/.jwmrc
-#COPY ./setup/ui/jwm/jwm-session /usr/bin/
-#RUN chmod a+x /usr/bin/jwm-session
+COPY ./setup/ui/jwm/jwm-session /usr/bin/
+RUN chmod a+x /usr/bin/jwm-session
 #tinywm ui
 COPY ./setup/ui/tinywm/tinywm-session /usr/bin/
 RUN chmod a+x /usr/bin/tinywm-session

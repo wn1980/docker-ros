@@ -8,13 +8,12 @@ NAME=ros-robot-daemon
 
 docker rm -f $NAME
 
-docker run -d \
-	-p 5901:5901 \
-	-p 6901:6901 \
+docker run -d --name $NAME \
+	--network host \
 	--privileged \
-	--volume="$PWD:$HOME" \
 	-e VNC_RESOLUTION=$p1080 \
-	--name $NAME \
-	--restart always \
-	wn1980/ros-robot:gpu-rc
-#	--restart unless-stopped \
+	-e VNC_COL_DEPTH=24 \
+	--restart unless-stopped \
+	-v /dev:/dev \
+	-v /etc/localtime:/etc/localtime:ro \
+	wn1980/ros-robot
