@@ -16,4 +16,4 @@ docker run -d --name $NAME \
 	--restart unless-stopped \
 	-v /dev:/dev \
 	-v /etc/localtime:/etc/localtime:ro \
-	aarch64.registry.marina.io/waipotn/ros-robot
+	wn1980/ros-robot:rpi

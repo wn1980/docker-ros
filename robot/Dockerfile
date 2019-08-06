@@ -38,8 +38,9 @@ RUN apt-get update && apt-get install -y \
 	ros-$ROS_DISTRO-gmapping \
 	ros-$ROS_DISTRO-map-server \
 	ros-$ROS_DISTRO-robot-localization \
-	ros-$ROS_DISTRO-tf2 \
-	ros-$ROS_DISTRO-tf2-ros \
+	ros-$ROS_DISTRO-tf \
+	#ros-$ROS_DISTRO-tf2 \
+	#ros-$ROS_DISTRO-tf2-ros \
     ros-$ROS_DISTRO-xv-11-laser-driver \
     ros-$ROS_DISTRO-rplidar-ros \
     ros-$ROS_DISTRO-urg-node \
